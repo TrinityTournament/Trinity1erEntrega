@@ -1,0 +1,15 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { background: #0a0000; color: #f5f0f0; font-family: 'Barlow', sans-serif; min-height: 100vh; }
+
+.coming-soon {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 100vh; gap: 1rem; text-align: center; padding: 2rem;
+}
+
+.coming-soon h1 {
+    font-family: 'Barlow Condensed', sans-serif; font-size: clamp(40px, 8vw, 80px);
+    font-weight: 900; letter-spacing: 4px; color: #c0000a;
+}
+
+.coming-soon p { font-size: 16px; color: #8a6a6a; }
