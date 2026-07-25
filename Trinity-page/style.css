@@ -458,6 +458,11 @@ nav {
     color: var(--text-muted);
 }
 
+a.card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
 /* ── SCROLL ARROWS ── */
 .scroll-arrow {
     position: absolute;

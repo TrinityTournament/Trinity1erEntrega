@@ -1,4 +1,4 @@
-/* tournament.css — v4 (tarjetas horizontales 3:2 + blur + ícono centrado) */
+/* tournament.css — v5 (fix: aspect-ratio aplicado al flex-item real) */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -52,25 +52,33 @@ body {
     margin-bottom: 44px;
 }
 
-.game-card {
+/* .game-card-wrap es el hijo directo de .games-grid (el flex-item real).
+   Antes el ancho/alto/aspect-ratio estaban en .game-card (el <a> de adentro,
+   que NO es flex-item), por eso las cards colapsaban angostas y altas. */
+.game-card-wrap {
     position: relative;
-    display: block;
     flex: 1 1 calc(33.333% - 14px);
     max-width: calc(33.333% - 14px);
-    height: 230px;          /* fallback si aspect-ratio no carga */
     aspect-ratio: 3 / 2;    /* tarjeta horizontal, ratio medido de la referencia */
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid var(--border, rgba(180,0,0,0.15));
-    cursor: pointer;
-    text-decoration: none;
     isolation: isolate;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.game-card:hover {
+.game-card-wrap:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 28px rgba(192, 0, 10, 0.25);
+}
+
+/* .game-card ahora solo llena el wrap; ya no necesita sus propias medidas */
+.game-card {
+    position: absolute;
+    inset: 0;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 /* Capa de imagen de fondo con blur. Se agranda un poco (scale) para que el
@@ -100,8 +108,8 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    width: 176px;
-    height: 176px;
+    width: 206px;
+    height: 206px;
     object-fit: contain;
     filter: drop-shadow(0 4px 14px rgba(0,0,0,0.6));
     pointer-events: none;
@@ -165,10 +173,10 @@ body {
 }
 
 @media (max-width: 760px) {
-    .game-card { flex-basis: calc(50% - 10px); max-width: calc(50% - 10px); height: 170px; }
+    .game-card-wrap { flex-basis: calc(50% - 10px); max-width: calc(50% - 10px); }
 }
 
 @media (max-width: 480px) {
-    .game-card { flex-basis: 100%; max-width: 100%; height: 220px; }
+    .game-card-wrap { flex-basis: 100%; max-width: 100%; }
     .tournaments-header h1 { letter-spacing: 3px; }
 }
