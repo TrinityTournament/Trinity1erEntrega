@@ -30,6 +30,14 @@ body {
     border-bottom: 4px solid var(--accent, #c0000a);
 }
 
+.tournament-header h2 {
+    margin-top: 14px;
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
 .tournaments-header .how-to-join {
     margin-top: 14px;
     display: inline-block;
